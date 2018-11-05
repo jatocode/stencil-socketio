@@ -17,8 +17,8 @@ export class TobiasSocketio {
     const socket: any = ioFunc(url, { transports: ['websocket'], forceNew: true});
 
     socket.on('status', (e) => {
-      this.status = e.data;
-      console.log(e)
+      // this.status =
+      console.log(e);
     });
   }
 
