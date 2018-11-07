@@ -1,8 +1,5 @@
 import { Component, State } from '@stencil/core';
-import io from 'socket.io-client';
-
-const ioFunc: any = (io as any).default ? (io as any).default : io;
-
+import { connect } from 'socket.io-client';
 
 
 @Component({
@@ -14,7 +11,7 @@ export class TobiasSocketio {
 
   componentWillLoad() {
     let url = "example.com";
-    const socket: any = ioFunc(url, { transports: ['websocket'], forceNew: true});
+    const socket: any = connect(url, { transports: ['websocket'], forceNew: true});
 
     socket.on('status', (e) => {
       // this.status =
