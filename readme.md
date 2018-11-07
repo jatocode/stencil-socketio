@@ -2,6 +2,8 @@
 
 Trying to get Stenciljs and socket.io to work in a perfect harmony.
 
+Had to create a file: node_modules/@stencil/core/dist/sys/src/empty.js to get it to work with stencil 0.15.2
+
 ## Getting Started
 
 To start a new project using Stencil, clone this repo to a new directory:

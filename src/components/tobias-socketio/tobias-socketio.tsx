@@ -7,23 +7,25 @@ import { connect } from 'socket.io-client';
   styleUrl: 'tobias-socketio.css'
 })
 export class TobiasSocketio {
-  @State() status = 'unknown'
+  @State() connected:boolean = false;;
 
   componentWillLoad() {
     let url = "example.com";
-    const socket: any = connect(url, { transports: ['websocket'], forceNew: true});
+    const socket:SocketIOClient.Socket = connect(url, { transports: ['websocket'], forceNew: true});
 
-    socket.on('status', (e) => {
-      // this.status =
-      console.log(e);
+    socket.on('connect', () => {
+      this.connected = socket.connected;
+    });
+
+    socket.on('disconnect', () => {
+      this.connected = socket.connected;
     });
   }
 
   render() {
     return (
       <div>
-        <p>Hello TobiasSocketio!</p>
-        <div>Status {this.status}</div>
+        <div>Connection status: {this.connected? 'connected':'disconnected'}</div>
       </div>
     );
   }
